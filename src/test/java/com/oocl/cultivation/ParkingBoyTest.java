@@ -55,13 +55,13 @@ class ParkingBoyTest {
     @Test
     public void should_return_car_when_fetch_car_given_parking_lot_that_parked_the_car() {
         //given
-        ParkingLot parkingLot = new ParkingLot(1);
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         Car car = new Car();
-        Ticket ticket = parkingLot.park(car);
+        Ticket ticket = parkingBoy.park(car);
 
         //when
         final Car actual = parkingLot.fetch(ticket);
-
 
         //then
         assertEquals(car, actual);
