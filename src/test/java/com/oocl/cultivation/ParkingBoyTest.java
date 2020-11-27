@@ -45,11 +45,13 @@ class ParkingBoyTest {
 
         //when
         Ticket ticket1 = parkingBoy.park(car1);
-        Ticket ticket2 = parkingBoy.park(car2);
 
         //then
         assertNotNull(ticket1);
-        assertNull(ticket2);
+        NotEnoughSpaceException notEnoughSpaceException = assertThrows(NotEnoughSpaceException.class, () -> {
+            parkingBoy.park(car2);
+        });
+        assertEquals("Not Enough Space", notEnoughSpaceException.getMessage());
     }
 
     @Test
@@ -97,5 +99,21 @@ class ParkingBoyTest {
         //then
         assertNull(secondFetch);
     }
+
+//    @Test
+//    public void should_throw_not_enough_space_exception_when_park_given_full_parking_lot() {
+//        //given
+//        ParkingLot parkingLot = new ParkingLot(1);
+//        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+//        parkingBoy.park(new Car());
+//
+//        //when
+//        NotEnoughSpaceException notEnoughSpaceException = assertThrows(NotEnoughSpaceException.class, () -> {})
+//        parkingBoy.park(new Car);
+//
+//        //then
+//
+//    }
+
 
 }
