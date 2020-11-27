@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -34,6 +35,24 @@ class ParkingBoyTest {
         //then
         verify(parkingLot, times(1)).park(car);
     }
+    
+    @Test
+    public void should_not_be_parked_when_park_multiple_cars_given_multiple_car_and_parking_lot_only_1_space() {
+        //given
+        ParkingLot parkingLot = new ParkingLot(1);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        Car car1 = new Car();
+        Car car2 = new Car();
+
+        //when
+        Ticket ticket1 = parkingBoy.park(car1);
+        Ticket ticket2 = parkingBoy.park(car2);
+
+        //then
+        assertNotNull(ticket1);
+        assertNull(ticket2);
+    }
+    
 
 
 }
