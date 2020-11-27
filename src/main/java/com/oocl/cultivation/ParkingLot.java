@@ -1,6 +1,5 @@
 package com.oocl.cultivation;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,14 +24,18 @@ public class ParkingLot {
         return (this.capacity - this.ticketCarMap.size() > 0);
     }
 
-    public Ticket park(Car car) {
-        if (!this.checkAvailableSlot()) {
-            return null;
-        }
+    private Ticket generateTicket(Car car) {
         Ticket ticket = new Ticket();
         this.ticketCarMap.put(ticket, car);
         this.ticketUsedMap.put(ticket, false);
         return ticket;
+    }
+
+    public Ticket park(Car car) {
+        if (!this.checkAvailableSlot()) {
+            return null;
+        }
+        return this.generateTicket(car);
     }
 
     private Boolean isTicketUsed(Ticket ticket) {

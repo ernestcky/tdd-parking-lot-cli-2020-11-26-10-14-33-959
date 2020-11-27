@@ -34,7 +34,7 @@ class ParkingBoyTest {
         //then
         verify(parkingLot, times(1)).park(car);
     }
-    
+
     @Test
     public void should_not_be_parked_when_park_multiple_cars_given_multiple_car_and_parking_lot_only_1_space() {
         //given
