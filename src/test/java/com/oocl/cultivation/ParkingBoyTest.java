@@ -3,8 +3,7 @@ package com.oocl.cultivation;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -51,6 +50,21 @@ class ParkingBoyTest {
         //then
         assertNotNull(ticket1);
         assertNull(ticket2);
+    }
+
+    @Test
+    public void should_return_car_when_fetch_car_given_parking_lot_that_parked_the_car() {
+        //given
+        ParkingLot parkingLot = new ParkingLot(1);
+        Car car = new Car();
+        Ticket ticket = parkingLot.park(car);
+
+        //when
+        final Car actual = parkingLot.fetch(ticket);
+
+
+        //then
+        assertEquals(car, actual);
     }
     
 

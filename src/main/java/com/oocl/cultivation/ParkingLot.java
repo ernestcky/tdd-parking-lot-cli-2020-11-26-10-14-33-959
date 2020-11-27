@@ -25,4 +25,8 @@ public class ParkingLot {
         carList.add(car);
         return new Ticket();
     }
+
+    public Car fetch(Ticket ticket) {
+        return null;
+    }
 }
