@@ -18,8 +18,12 @@ public class ParkingLot {
         this.ticketCarMap = new HashMap<>();
     }
 
+    private Boolean checkAvailableSlot() {
+        return (this.capacity - this.ticketCarMap.size() > 0);
+    }
+
     public Ticket park(Car car) {
-        if (capacity - ticketCarMap.size() <= 0) {
+        if (!this.checkAvailableSlot()) {
             return null;
         }
         Ticket ticket = new Ticket();
