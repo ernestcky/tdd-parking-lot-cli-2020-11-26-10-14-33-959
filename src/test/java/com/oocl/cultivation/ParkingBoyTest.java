@@ -73,14 +73,12 @@ class ParkingBoyTest {
         ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         Car car = new Car();
+
+        Ticket ticket = parkingBoy.park(car);
         //when
-        parkingBoy.fetch(car);
+        parkingBoy.fetch(ticket);
 
         //then
-        verify(parkingLot, times(1)).park(car);
+        verify(parkingLot, times(1)).fetch(ticket);
     }
-
-
-
-
 }

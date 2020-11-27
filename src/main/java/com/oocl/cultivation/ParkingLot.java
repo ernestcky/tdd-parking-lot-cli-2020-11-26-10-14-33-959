@@ -32,6 +32,6 @@ public class ParkingLot {
     }
 
     public Car fetch(Ticket ticket) {
-        return this.ticketCarMap.get(ticket);
+        return null;
     }
 }
