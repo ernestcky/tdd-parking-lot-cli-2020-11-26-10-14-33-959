@@ -33,7 +33,7 @@ public class ParkingLot {
 
     public Ticket park(Car car) throws NotEnoughSpaceException {
         if (!this.checkAvailableSlot()) {
-            throw new NotEnoughSpaceException();
+            throw new NotEnoughSpaceException("Not Enough Space");
         }
         return this.generateTicket(car);
     }
