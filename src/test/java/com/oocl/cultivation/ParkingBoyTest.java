@@ -81,4 +81,21 @@ class ParkingBoyTest {
         //then
         verify(parkingLot, times(1)).fetch(ticket);
     }
+
+    @Test
+    public void should_return_null_when_fetch_car_given_used_ticket() {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        Car car = new Car();
+
+        //when
+        Ticket ticket = parkingBoy.park(car);
+        Car firstFetch = parkingBoy.fetch(ticket);
+        Car secondFetch = parkingBoy.fetch(ticket);
+
+        //then
+        assertNull(secondFetch);
+    }
+
 }
