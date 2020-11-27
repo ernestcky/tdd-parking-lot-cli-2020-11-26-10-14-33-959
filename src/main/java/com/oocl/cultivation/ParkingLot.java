@@ -31,9 +31,9 @@ public class ParkingLot {
         return ticket;
     }
 
-    public Ticket park(Car car) {
+    public Ticket park(Car car) throws NotEnoughSpaceException {
         if (!this.checkAvailableSlot()) {
-            return null;
+            throw new NotEnoughSpaceException();
         }
         return this.generateTicket(car);
     }

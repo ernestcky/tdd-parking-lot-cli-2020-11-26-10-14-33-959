@@ -2,6 +2,7 @@ package com.oocl.cultivation;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.mockito.internal.matchers.Not;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.times;
@@ -9,7 +10,7 @@ import static org.mockito.Mockito.verify;
 
 class ParkingBoyTest {
     @Test
-    public void should_return_ticket_when_park_given_car_and_parking_boy_and_parking_lot() {
+    public void should_return_ticket_when_park_given_car_and_parking_boy_and_parking_lot() throws NotEnoughSpaceException {
         //given
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
@@ -23,7 +24,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    public void should_parking_boy_call_parking_lot_park_function_once_when_park_the_car() {
+    public void should_parking_boy_call_parking_lot_park_function_once_when_park_the_car() throws NotEnoughSpaceException {
         //given
         ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
@@ -36,7 +37,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    public void should_not_be_parked_when_park_multiple_cars_given_multiple_car_and_parking_lot_only_1_space() {
+    public void should_not_be_parked_when_park_multiple_cars_given_multiple_car_and_parking_lot_only_1_space() throws NotEnoughSpaceException {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
@@ -55,7 +56,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    public void should_return_car_when_fetch_car_given_parking_lot_that_parked_the_car() {
+    public void should_return_car_when_fetch_car_given_parking_lot_that_parked_the_car() throws NotEnoughSpaceException {
         //given
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
@@ -70,7 +71,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    public void should_call_parking_lot_fetch_when_parking_boy_fetch_car() {
+    public void should_call_parking_lot_fetch_when_parking_boy_fetch_car() throws NotEnoughSpaceException {
         //given
         ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
@@ -85,7 +86,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    public void should_return_null_when_fetch_car_given_used_ticket() {
+    public void should_return_null_when_fetch_car_given_used_ticket() throws NotEnoughSpaceException {
         //given
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
@@ -99,21 +100,4 @@ class ParkingBoyTest {
         //then
         assertNull(secondFetch);
     }
-
-//    @Test
-//    public void should_throw_not_enough_space_exception_when_park_given_full_parking_lot() {
-//        //given
-//        ParkingLot parkingLot = new ParkingLot(1);
-//        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
-//        parkingBoy.park(new Car());
-//
-//        //when
-//        NotEnoughSpaceException notEnoughSpaceException = assertThrows(NotEnoughSpaceException.class, () -> {})
-//        parkingBoy.park(new Car);
-//
-//        //then
-//
-//    }
-
-
 }
