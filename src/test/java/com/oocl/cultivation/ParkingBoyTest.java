@@ -66,7 +66,21 @@ class ParkingBoyTest {
         //then
         assertEquals(car, actual);
     }
-    
+
+    @Test
+    public void should_call_parking_lot_fetch_when_parking_boy_fetch_car() {
+        //given
+        ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        Car car = new Car();
+        //when
+        parkingBoy.fetch(car);
+
+        //then
+        verify(parkingLot, times(1)).park(car);
+    }
+
+
 
 
 }
