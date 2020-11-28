@@ -20,7 +20,7 @@ public class ParkingLot {
         this.ticketMap = new HashMap<>();
     }
 
-    private Boolean checkAvailableSlot() {
+    public Boolean isHasAvailableSlot() {
         return (this.capacity - this.ticketCarMap.size() > 0);
     }
 
@@ -32,7 +32,7 @@ public class ParkingLot {
     }
 
     public Ticket park(Car car) throws NotEnoughSpaceException {
-        if (!this.checkAvailableSlot()) {
+        if (!this.isHasAvailableSlot()) {
             throw new NotEnoughSpaceException("Not Enough Space");
         }
         return this.generateTicket(car);
