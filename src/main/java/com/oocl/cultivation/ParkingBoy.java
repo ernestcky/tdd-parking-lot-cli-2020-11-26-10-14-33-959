@@ -1,17 +1,19 @@
 package com.oocl.cultivation;
 
-public class ParkingBoy {
-    private ParkingLot parkingLot;
+import java.util.List;
 
-    public ParkingBoy(ParkingLot parkingLot) {
-        this.parkingLot = parkingLot;
+public class ParkingBoy {
+    private List<ParkingLot> parkingLotList;
+
+    public ParkingBoy(List<ParkingLot> parkingLotList) {
+        this.parkingLotList = parkingLotList;
     }
 
     public Ticket park(Car car) throws NotEnoughSpaceException {
-        return this.parkingLot.park(car);
+        return this.parkingLotList.get(0).park(car);
     }
 
     public Car fetch(Ticket ticket) {
-        return this.parkingLot.fetch(ticket);
+        return this.parkingLotList.get(0).fetch(ticket);
     }
 }
