@@ -1,16 +1,21 @@
 package com.oocl.cultivation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ParkingBoy {
     private List<ParkingLot> parkingLotList;
 
-    public List<ParkingLot> getParkingLotList() {
-        return parkingLotList;
+    public ParkingBoy() {
+        this.parkingLotList = new ArrayList<>();
     }
 
     public ParkingBoy(List<ParkingLot> parkingLotList) {
         this.parkingLotList = parkingLotList;
+    }
+
+    public List<ParkingLot> getParkingLotList() {
+        return parkingLotList;
     }
 
     public Ticket park(Car car) throws NotEnoughSpaceException {

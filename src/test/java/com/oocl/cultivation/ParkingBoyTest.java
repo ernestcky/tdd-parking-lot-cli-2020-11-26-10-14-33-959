@@ -173,7 +173,7 @@ class ParkingBoyTest {
         assertEquals(car1, parkingBoy.fetch(ticket1));
         assertEquals(car2, parkingBoy.fetch(ticket2));
     }
-    
+
     @Test
     public void should_park_cars_to_parking_lot_with_more_capacity_when_park_given_two_parking_lot() throws NotEnoughSpaceException {
         //given
@@ -183,7 +183,7 @@ class ParkingBoyTest {
         parkingLotList.add(parkingLotA);
         parkingLotList.add(parkingLotB);
         SmartParkingBoy parkingBoy = new SmartParkingBoy(parkingLotList);
-                
+
         //when
         Car car1 = new Car();
         Car car2 = new Car();
@@ -250,4 +250,32 @@ class ParkingBoyTest {
         assertEquals(1, parkingLotB.getNumberOfCar());
         assertEquals(4, parkingLotC.getNumberOfCar());
     }
+
+    @Test
+    public void should_successfully_add_parking_boy_to_management_list_when_add_parking_boy_given_manager() {
+        //given
+        List<ParkingBoy> parkingBoyList = new ArrayList<>();
+        ParkingBoy parkingBoyA = new ParkingBoy();
+        ParkingBoy parkingBoyB = new ParkingBoy();
+        ParkingBoy parkingBoyC = new ParkingBoy();
+
+        parkingBoyList.add(parkingBoyA);
+        parkingBoyList.add(parkingBoyB);
+        parkingBoyList.add(parkingBoyC);
+
+        ParkingManager parkingManager = new ParkingManager();
+
+        //when
+        for (ParkingBoy parkingBoy : parkingBoyList) {
+            parkingManager.addParkingBoy(parkingBoy);
+        }
+
+        //then
+        assertEquals(parkingBoyA, parkingManager.getParkingBoyList().get(0));
+        assertEquals(parkingBoyB, parkingManager.getParkingBoyList().get(1));
+        assertEquals(parkingBoyC, parkingManager.getParkingBoyList().get(2));
+
+    }
+
+
 }
