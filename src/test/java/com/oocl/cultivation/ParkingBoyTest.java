@@ -1,16 +1,11 @@
 package com.oocl.cultivation;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import org.mockito.internal.matchers.Not;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 class ParkingBoyTest {
     @Test
@@ -187,7 +182,7 @@ class ParkingBoyTest {
         ParkingLot parkingLotB = new ParkingLot(5);
         parkingLotList.add(parkingLotA);
         parkingLotList.add(parkingLotB);
-        SmartParkingboy parkingBoy = new SmartParkingboy(parkingLotList);
+        SmartParkingBoy parkingBoy = new SmartParkingBoy(parkingLotList);
                 
         //when
         Car car1 = new Car();
@@ -209,7 +204,7 @@ class ParkingBoyTest {
         List<ParkingLot> parkingLotList = new ArrayList<>();
         parkingLotList.add(new ParkingLot());
         parkingLotList.add(new ParkingLot());
-        SmartParkingboy parkingBoy = new SmartParkingboy(parkingLotList);
+        SmartParkingBoy parkingBoy = new SmartParkingBoy(parkingLotList);
 
         //when
         Car car1 = new Car();

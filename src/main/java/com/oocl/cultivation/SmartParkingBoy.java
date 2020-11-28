@@ -4,8 +4,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class SmartParkingboy extends ParkingBoy {
-    public SmartParkingboy(List<ParkingLot> parkingLotList) {
+public class SmartParkingBoy extends ParkingBoy {
+    public SmartParkingBoy(List<ParkingLot> parkingLotList) {
         super(parkingLotList);
     }
 
@@ -13,7 +13,7 @@ public class SmartParkingboy extends ParkingBoy {
     public Ticket park(Car car) throws NotEnoughSpaceException {
         ParkingLot parkingLotToBeUsed = Collections.max(this.getParkingLotList(), Comparator.comparing(c -> c.getRemainingPlace()));
 
-        if (parkingLotToBeUsed.getRemainingPlace() > 0) {
+        if (parkingLotToBeUsed.isHasAvailableSlot()) {
             return parkingLotToBeUsed.park(car);
         }
 
