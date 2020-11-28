@@ -405,10 +405,10 @@ class ParkingBoyTest {
 
         //then
         assertNotNull(ticket1);
-        NotEnoughSpaceException notEnoughSpaceException = assertThrows(NotEnoughSpaceException.class, () -> {
+        CarNotFoundException carNotFoundException = assertThrows(CarNotFoundException.class, () -> {
             parkingManager.getParkingBoy(0).fetch(ticket2);
         });
-        assertEquals("Car Not Found", notEnoughSpaceException.getMessage());
+        assertEquals("Car Not Found", carNotFoundException.getMessage());
 
     }
 }
