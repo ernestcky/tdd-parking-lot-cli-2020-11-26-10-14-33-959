@@ -20,12 +20,16 @@ public class ParkingLot {
         this.ticketMap = new HashMap<>();
     }
 
+    public Integer getRemainingPlace() {
+        return this.capacity - this.getNumberOfCar();
+    }
+
     public Integer getNumberOfCar() {
         return this.ticketCarMap.size();
     }
 
     public Boolean isHasAvailableSlot() {
-        return (this.capacity - this.getNumberOfCar() > 0);
+        return (this.getRemainingPlace() > 0);
     }
 
     private Ticket generateTicket(Car car) {

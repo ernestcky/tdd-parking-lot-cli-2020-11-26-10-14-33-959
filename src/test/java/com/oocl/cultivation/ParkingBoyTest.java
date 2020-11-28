@@ -177,7 +177,6 @@ class ParkingBoyTest {
         //then
         assertEquals(car1, parkingBoy.fetch(ticket1));
         assertEquals(car2, parkingBoy.fetch(ticket2));
-
     }
     
     @Test
@@ -202,9 +201,5 @@ class ParkingBoyTest {
         //then
         assertEquals(parkingLotA.getNumberOfCar(), 0);
         assertEquals(parkingLotB.getNumberOfCar(), 3);
-
     }
-    
-
-
 }
