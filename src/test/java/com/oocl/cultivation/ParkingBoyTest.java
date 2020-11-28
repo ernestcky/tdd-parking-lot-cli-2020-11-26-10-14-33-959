@@ -5,11 +5,12 @@ import org.mockito.Mockito;
 import org.mockito.internal.matchers.Not;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 class ParkingBoyTest {
     @Test
@@ -28,22 +29,22 @@ class ParkingBoyTest {
         assertNotNull(ticket);
     }
 
-    @Test
-    public void should_parking_boy_call_parking_lot_park_function_once_when_park_the_car() throws NotEnoughSpaceException {
-        //given
-        ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
-        List<ParkingLot> parkingLotList = new ArrayList<>();
-        parkingLotList.add(parkingLot);
-
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
-        Car car = new Car();
-
-        //when
-        parkingBoy.park(car);
-
-        //then
-        verify(parkingLot, times(1)).park(car);
-    }
+//    @Test
+//    public void should_parking_boy_call_parking_lot_park_function_once_when_park_the_car() throws NotEnoughSpaceException {
+//        //given
+//        ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
+//        List<ParkingLot> parkingLotList = new ArrayList<>();
+//        parkingLotList.add(parkingLot);
+//
+//        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
+//        Car car = new Car();
+//
+//        //when
+//        parkingBoy.park(car);
+//
+//        //then
+//        verify(parkingLot, times(1)).park(car);
+//    }
 
     @Test
     public void should_not_be_parked_when_park_multiple_cars_given_multiple_car_and_parking_lot_only_1_space() throws NotEnoughSpaceException {
@@ -83,23 +84,23 @@ class ParkingBoyTest {
         assertEquals(car, actual);
     }
 
-    @Test
-    public void should_call_parking_lot_fetch_when_parking_boy_fetch_car() throws NotEnoughSpaceException {
-        //given
-        ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
-        List<ParkingLot> parkingLotList = new ArrayList<>();
-        parkingLotList.add(parkingLot);
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
-
-        Car car = new Car();
-
-        Ticket ticket = parkingBoy.park(car);
-        //when
-        parkingBoy.fetch(ticket);
-
-        //then
-        verify(parkingLot, times(1)).fetch(ticket);
-    }
+//    @Test
+//    public void should_call_parking_lot_fetch_when_parking_boy_fetch_car() throws NotEnoughSpaceException {
+//        //given
+//        ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
+//        List<ParkingLot> parkingLotList = new ArrayList<>();
+//        parkingLotList.add(parkingLot);
+//        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
+//
+//        Car car = new Car();
+//
+//        Ticket ticket = parkingBoy.park(car);
+//        //when
+//        parkingBoy.fetch(ticket);
+//
+//        //then
+//        verify(parkingLot, times(1)).fetch(ticket);
+//    }
 
     @Test
     public void should_return_null_when_fetch_car_given_used_ticket() throws NotEnoughSpaceException {
@@ -119,7 +120,7 @@ class ParkingBoyTest {
         //then
         assertNull(secondFetch);
     }
-    
+
     @Test
     public void should_return_null_when_fetch_car_given_wrong_ticket() throws NotEnoughSpaceException {
         //given
@@ -138,24 +139,6 @@ class ParkingBoyTest {
         //then
         assertNull(fetchCar);
     }
-    
-    @Test
-    public void should_return_two_ticket_when_park_two_car_given_parking_boy_and_two_parking_lot() throws NotEnoughSpaceException {
-        //given
-        List<ParkingLot> parkingLotList = new ArrayList<>();
-        parkingLotList.add(new ParkingLot());
-        parkingLotList.add(new ParkingLot());
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
 
-        //when
-        Ticket ticket1 = parkingBoy.park(new Car());
-        Ticket ticket2 = parkingBoy.park(new Car());
 
-        //then
-        assertNotNull(ticket1);
-        assertNotNull(ticket2);
-
-    }
-    
-    
 }

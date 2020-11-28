@@ -10,7 +10,12 @@ public class ParkingBoy {
     }
 
     public Ticket park(Car car) throws NotEnoughSpaceException {
-        return this.parkingLotList.get(0).park(car);
+        for (ParkingLot parkingLot : parkingLotList) {
+            if (parkingLot.isHasAvailableSlot()) {
+                return parkingLot.park(car);
+            }
+        }
+        throw new NotEnoughSpaceException("Not Enough Space");
     }
 
     public Car fetch(Ticket ticket) {
