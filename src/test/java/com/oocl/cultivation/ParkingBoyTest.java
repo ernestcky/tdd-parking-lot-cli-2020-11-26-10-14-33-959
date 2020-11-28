@@ -277,5 +277,51 @@ class ParkingBoyTest {
 
     }
 
+    @Test
+    public void should_return_return_ticket_when_order_parking_boy_park_given_manager_and_some_car() throws NotEnoughSpaceException {
+
+        //given
+        List<ParkingLot> parkingLotList1 = new ArrayList<>();
+        parkingLotList1.add(new ParkingLot(1));
+
+        List<ParkingLot> parkingLotList2 = new ArrayList<>();
+        parkingLotList2.add(new ParkingLot(1));
+        parkingLotList2.add(new ParkingLot(10));
+
+        List<ParkingLot> parkingLotList3 = new ArrayList<>();
+        parkingLotList3.add(new ParkingLot(2));
+        parkingLotList3.add(new ParkingLot(5));
+
+        List<ParkingLot> parkingLotList4 = new ArrayList<>();
+        parkingLotList4.add(new ParkingLot(5));
+
+        List<ParkingBoy> parkingBoyList = new ArrayList<>();
+        parkingBoyList.add(new ParkingBoy(parkingLotList1));
+        parkingBoyList.add(new ParkingBoy(parkingLotList2));
+        parkingBoyList.add(new ParkingBoy(parkingLotList3));
+
+        ParkingManager parkingManager = new ParkingManager(parkingBoyList, parkingLotList4);
+
+        Car car1 = new Car();
+        Car car2 = new Car();
+        Car car3 = new Car();
+        Car car4 = new Car();
+        Car car5 = new Car();
+
+        //when
+        Ticket ticket1 = parkingManager.getParkingBoy(0).park(car1);
+        Ticket ticket2 = parkingManager.getParkingBoy(1).park(car2);
+        Ticket ticket3 = parkingManager.getParkingBoy(2).park(car3);
+        Ticket ticket4 = parkingManager.getParkingBoy(1).park(car4);
+        Ticket ticket5 = parkingManager.getParkingBoy(2).park(car5);
+
+        //then
+        assertNotNull(ticket1);
+        assertNotNull(ticket2);
+        assertNotNull(ticket3);
+        assertNotNull(ticket4);
+        assertNotNull(ticket5);
+
+    }
 
 }

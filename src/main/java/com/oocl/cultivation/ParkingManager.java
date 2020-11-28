@@ -24,4 +24,8 @@ public class ParkingManager extends ParkingBoy {
         this.parkingBoyList.add(parkingBoy);
     }
 
+    public ParkingBoy getParkingBoy(Integer index) {
+        return this.parkingBoyList.get(index);
+    }
+
 }
