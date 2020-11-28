@@ -20,6 +20,10 @@ public class ParkingLot {
         this.ticketMap = new HashMap<>();
     }
 
+    public Integer getCapacity() {
+        return capacity;
+    }
+
     public Integer getRemainingPlace() {
         return this.capacity - this.getNumberOfCar();
     }
