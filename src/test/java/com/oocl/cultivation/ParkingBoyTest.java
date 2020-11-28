@@ -340,4 +340,21 @@ class ParkingBoyTest {
         assertNotNull(ticket);
     }
 
+    @Test
+    public void should_return_correct_car_when_fetch_given_manager_and_parking_lot_and_car() throws NotEnoughSpaceException {
+        //given
+        List<ParkingLot> parkingLotList = new ArrayList<>();
+        ParkingLot parkingLot = new ParkingLot();
+        parkingLotList.add(parkingLot);
+
+        ParkingManager parkingManager = new ParkingManager(parkingLotList, null);
+        Car car = new Car();
+
+        //when
+        Ticket ticket = parkingManager.park(car);
+        Car fetchedCar = parkingManager.fetch(ticket);
+
+        //then
+        assertEquals(car, fetchedCar);
+    }
 }
