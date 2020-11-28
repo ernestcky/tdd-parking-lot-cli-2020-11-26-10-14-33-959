@@ -21,9 +21,8 @@ public class ParkingBoy {
     public Car fetch(Ticket ticket) {
         Car car;
         for (ParkingLot parkingLot : parkingLotList) {
-            car = parkingLot.fetch(ticket);
-            if (car != null) {
-                return car;
+            if (ticket.getParkingLot() != null && ticket.getParkingLot().equals(parkingLot.toString())) {
+                return parkingLot.fetch(ticket);
             }
         }
         return null;
