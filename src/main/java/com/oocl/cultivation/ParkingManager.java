@@ -21,7 +21,7 @@ public class ParkingManager extends ParkingBoy {
     }
 
     public void addParkingBoy(ParkingBoy parkingBoy) {
-
+        this.parkingBoyList.add(parkingBoy);
     }
 
 }
