@@ -227,7 +227,7 @@ class ParkingBoyTest {
         ParkingLot parkingLotC = new ParkingLot(10);
         parkingLotList.add(parkingLotA);
         parkingLotList.add(parkingLotB);
-        SmartParkingBoy parkingBoy = new SmartParkingBoy(parkingLotList);
+        SuperSmartParkingBoy parkingBoy = new SuperSmartParkingBoy(parkingLotList);
 
         //when
         Car car1 = new Car();

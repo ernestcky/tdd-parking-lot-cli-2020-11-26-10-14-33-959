@@ -9,4 +9,5 @@ public class SuperSmartParkingBoy extends ParkingBoy {
         super(parkingLotList);
     }
 
+
 }
