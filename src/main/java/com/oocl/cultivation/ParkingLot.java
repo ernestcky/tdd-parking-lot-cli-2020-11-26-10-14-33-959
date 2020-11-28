@@ -6,18 +6,18 @@ import java.util.Map;
 public class ParkingLot {
     private final Integer capacity;
     private Map<Ticket, Car> ticketCarMap;
-    private Map<Ticket, Boolean> ticketUsedMap;
+    private Map<Ticket, Boolean> ticketMap;
 
     public ParkingLot() {
         this.capacity = 1;
         this.ticketCarMap = new HashMap<>();
-        this.ticketUsedMap = new HashMap<>();
+        this.ticketMap = new HashMap<>();
     }
 
     public ParkingLot(Integer capacity) {
         this.capacity = capacity;
         this.ticketCarMap = new HashMap<>();
-        this.ticketUsedMap = new HashMap<>();
+        this.ticketMap = new HashMap<>();
     }
 
     private Boolean checkAvailableSlot() {
@@ -27,7 +27,7 @@ public class ParkingLot {
     private Ticket generateTicket(Car car) {
         Ticket ticket = new Ticket();
         this.ticketCarMap.put(ticket, car);
-        this.ticketUsedMap.put(ticket, false);
+        this.ticketMap.put(ticket, false);
         return ticket;
     }
 
@@ -38,13 +38,16 @@ public class ParkingLot {
         return this.generateTicket(car);
     }
 
-    private Boolean isTicketUsed(Ticket ticket) {
-        return this.ticketUsedMap.get(ticket);
+    private Boolean isTicketValid(Ticket ticket) {
+        if (this.ticketMap.get(ticket) != null) {
+            return this.ticketMap.get(ticket);
+        }
+        return false;
     }
 
     public Car fetch(Ticket ticket) {
-        if (!this.isTicketUsed(ticket)) {
-            this.ticketUsedMap.put(ticket, true);
+        if (!this.isTicketValid(ticket)) {
+            this.ticketMap.put(ticket, true);
             return this.ticketCarMap.get(ticket);
         }
         return null;

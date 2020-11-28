@@ -110,10 +110,10 @@ class ParkingBoyTest {
 
         //when
         parkingBoy.park(car);
-        Car fetchcar = parkingBoy.fetch(wrongTicket);
+        Car fetchCar = parkingBoy.fetch(wrongTicket);
 
         //then
-        assertNull(wrongTicket);
+        assertNull(fetchCar);
     }
     
 }
