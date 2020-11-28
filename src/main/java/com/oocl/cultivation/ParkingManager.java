@@ -11,9 +11,13 @@ public class ParkingManager extends ParkingBoy {
         this.parkingBoyList = new ArrayList<>();
     }
 
-    public ParkingManager(List<ParkingBoy> parkingBoyList, List<ParkingLot> parkingLotList) {
+    public ParkingManager(List<ParkingLot> parkingLotList, List<ParkingBoy> parkingBoyList) {
         super(parkingLotList);
-        this.parkingBoyList = parkingBoyList;
+        if (parkingBoyList == null) {
+            this.parkingBoyList = new ArrayList<>();
+        } else {
+            this.parkingBoyList = parkingBoyList;
+        }
     }
 
     public List<ParkingBoy> getParkingBoyList() {

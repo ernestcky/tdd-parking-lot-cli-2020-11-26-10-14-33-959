@@ -11,7 +11,11 @@ public class ParkingBoy {
     }
 
     public ParkingBoy(List<ParkingLot> parkingLotList) {
-        this.parkingLotList = parkingLotList;
+        if (parkingLotList == null) {
+            this.parkingLotList = new ArrayList<>();
+        } else {
+            this.parkingLotList = parkingLotList;
+        }
     }
 
     public List<ParkingLot> getParkingLotList() {

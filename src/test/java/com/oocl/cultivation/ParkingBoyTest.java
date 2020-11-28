@@ -279,7 +279,6 @@ class ParkingBoyTest {
 
     @Test
     public void should_return_return_ticket_when_order_parking_boy_park_given_manager_and_some_car() throws NotEnoughSpaceException {
-
         //given
         List<ParkingLot> parkingLotList1 = new ArrayList<>();
         parkingLotList1.add(new ParkingLot(1));
@@ -300,7 +299,7 @@ class ParkingBoyTest {
         parkingBoyList.add(new ParkingBoy(parkingLotList2));
         parkingBoyList.add(new ParkingBoy(parkingLotList3));
 
-        ParkingManager parkingManager = new ParkingManager(parkingBoyList, parkingLotList4);
+        ParkingManager parkingManager = new ParkingManager(parkingLotList4, parkingBoyList);
 
         Car car1 = new Car();
         Car car2 = new Car();
@@ -322,6 +321,23 @@ class ParkingBoyTest {
         assertNotNull(ticket4);
         assertNotNull(ticket5);
 
+    }
+    
+    @Test
+    public void should_return_ticket_when_park_given_manager_and_parking_lot_and_car() throws NotEnoughSpaceException {
+        //given
+        List<ParkingLot> parkingLotList = new ArrayList<>();
+        ParkingLot parkingLot = new ParkingLot();
+        parkingLotList.add(parkingLot);
+
+        ParkingManager parkingManager = new ParkingManager(parkingLotList, null);
+        Car car = new Car();
+                
+        //when
+        Ticket ticket = parkingManager.park(car);
+        
+        //then
+        assertNotNull(ticket);
     }
 
 }
