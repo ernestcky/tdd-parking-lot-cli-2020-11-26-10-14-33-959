@@ -98,7 +98,7 @@ class ParkingBoyTest {
 //    }
 
     @Test
-    public void should_return_null_when_fetch_car_given_used_ticket() throws NotEnoughSpaceException {
+    public void should_return_null_when_fetch_car_given_used_ticket() throws NotEnoughSpaceException, CarNotFoundException {
         //given
         ParkingLot parkingLot = new ParkingLot();
         List<ParkingLot> parkingLotList = new ArrayList<>();
@@ -117,7 +117,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    public void should_return_null_when_fetch_car_given_wrong_ticket() throws NotEnoughSpaceException {
+    public void should_return_null_when_fetch_car_given_wrong_ticket() throws NotEnoughSpaceException, CarNotFoundException {
         //given
         ParkingLot parkingLot = new ParkingLot();
         List<ParkingLot> parkingLotList = new ArrayList<>();
@@ -129,10 +129,12 @@ class ParkingBoyTest {
 
         //when
         parkingBoy.park(car);
-        Car fetchCar = parkingBoy.fetch(wrongTicket);
 
         //then
-        assertNull(fetchCar);
+        CarNotFoundException carNotFoundException = assertThrows(CarNotFoundException.class, () -> {
+            parkingBoy.fetch(wrongTicket);
+        });
+        assertEquals("Car Not Found", carNotFoundException.getMessage());
     }
 
 
@@ -155,7 +157,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    public void should_return_two_car_when_fetch_two_car_given_two_valid_ticket_from_two_parking_lot() throws NotEnoughSpaceException {
+    public void should_return_two_car_when_fetch_two_car_given_two_valid_ticket_from_two_parking_lot() throws NotEnoughSpaceException, CarNotFoundException {
         //given
         List<ParkingLot> parkingLotList = new ArrayList<>();
         parkingLotList.add(new ParkingLot());
@@ -199,7 +201,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    public void should_return_two_car_when_fetch_two_car_given_two_valid_ticket_from_two_parking_lot_and_smart_parking_boy() throws NotEnoughSpaceException {
+    public void should_return_two_car_when_fetch_two_car_given_two_valid_ticket_from_two_parking_lot_and_smart_parking_boy() throws NotEnoughSpaceException, CarNotFoundException {
         //given
         List<ParkingLot> parkingLotList = new ArrayList<>();
         parkingLotList.add(new ParkingLot());
@@ -341,7 +343,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    public void should_return_correct_car_when_fetch_given_manager_and_parking_lot_and_car() throws NotEnoughSpaceException {
+    public void should_return_correct_car_when_fetch_given_manager_and_parking_lot_and_car() throws NotEnoughSpaceException, CarNotFoundException {
         //given
         List<ParkingLot> parkingLotList = new ArrayList<>();
         ParkingLot parkingLot = new ParkingLot();

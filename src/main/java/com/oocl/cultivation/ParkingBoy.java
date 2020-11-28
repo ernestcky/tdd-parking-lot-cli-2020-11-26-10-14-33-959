@@ -31,13 +31,13 @@ public class ParkingBoy {
         throw new NotEnoughSpaceException("Not Enough Space");
     }
 
-    public Car fetch(Ticket ticket) {
+    public Car fetch(Ticket ticket) throws CarNotFoundException {
         Car car;
         for (ParkingLot parkingLot : parkingLotList) {
             if (ticket.getParkingLot() != null && ticket.getParkingLot().equals(parkingLot.toString())) {
                 return parkingLot.fetch(ticket);
             }
         }
-        return null;
+        throw new CarNotFoundException("Car Not Found");
     }
 }
