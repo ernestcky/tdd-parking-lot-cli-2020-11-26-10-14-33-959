@@ -159,4 +159,26 @@ class ParkingBoyTest {
 
     }
 
+    @Test
+    public void should_return_two_car_when_fetch_two_car_given_two_valid_ticket_from_two_parking_lot() throws NotEnoughSpaceException {
+        //given
+        List<ParkingLot> parkingLotList = new ArrayList<>();
+        parkingLotList.add(new ParkingLot());
+        parkingLotList.add(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
+
+        //when
+        Car car1 = new Car();
+        Car car2 = new Car();
+
+        Ticket ticket1 = parkingBoy.park(car1);
+        Ticket ticket2 = parkingBoy.park(car2);
+
+        //then
+        assertEquals(car1, parkingBoy.fetch(ticket1));
+        assertEquals(car2, parkingBoy.fetch(ticket2));
+
+    }
+
+
 }
