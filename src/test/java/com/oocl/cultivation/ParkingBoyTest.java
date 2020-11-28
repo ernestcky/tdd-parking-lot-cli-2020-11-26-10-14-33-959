@@ -100,4 +100,20 @@ class ParkingBoyTest {
         //then
         assertNull(secondFetch);
     }
+    
+    @Test
+    public void should_return_null_when_fetch_car_given_wrong_ticket() throws NotEnoughSpaceException {
+        //given
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
+        Car car = new Car();
+        Ticket wrongTicket = new Ticket();
+
+        //when
+        parkingBoy.park(car);
+        Car fetchcar = parkingBoy.fetch(wrongTicket);
+
+        //then
+        assertNull(wrongTicket);
+    }
+    
 }
