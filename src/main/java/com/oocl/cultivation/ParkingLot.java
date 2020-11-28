@@ -25,7 +25,7 @@ public class ParkingLot {
     }
 
     private Ticket generateTicket(Car car) {
-        Ticket ticket = new Ticket();
+        Ticket ticket = new Ticket(this.toString());
         this.ticketCarMap.put(ticket, car);
         this.ticketMap.put(ticket, false);
         return ticket;
