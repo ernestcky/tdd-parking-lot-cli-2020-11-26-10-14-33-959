@@ -247,7 +247,7 @@ class ParkingBoyTest {
 
         //then
         assertEquals(1, parkingLotA.getNumberOfCar());
-        assertEquals(2, parkingLotB.getNumberOfCar());
+        assertEquals(1, parkingLotB.getNumberOfCar());
         assertEquals(4, parkingLotC.getNumberOfCar());
     }
 }
