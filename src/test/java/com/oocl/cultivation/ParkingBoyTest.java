@@ -383,5 +383,32 @@ class ParkingBoyTest {
         assertEquals("Not Enough Space", notEnoughSpaceException.getMessage());
 
     }
+    @Test
+    public void should_throw_car_not_found_exception_when_fetch_given_manager_and_parking_boy_and_invalid_ticket() throws NotEnoughSpaceException {
+        //given
+        List<ParkingLot> parkingLotList = new ArrayList<>();
+        ParkingLot parkingLotA = new ParkingLot(1);
+        parkingLotList.add(parkingLotA);
 
+        ParkingLot parkingLotB = new ParkingLot(1);
+
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
+        Car car1 = new Car();
+        Car car2 = new Car();
+
+        ParkingManager parkingManager = new ParkingManager();
+        parkingManager.addParkingBoy(parkingBoy);
+
+        //when
+        Ticket ticket1 = parkingManager.getParkingBoy(0).park(car1);
+        Ticket ticket2 = parkingLotB.park(car2);
+
+        //then
+        assertNotNull(ticket1);
+        NotEnoughSpaceException notEnoughSpaceException = assertThrows(NotEnoughSpaceException.class, () -> {
+            parkingManager.getParkingBoy(0).fetch(ticket2);
+        });
+        assertEquals("Car Not Found", notEnoughSpaceException.getMessage());
+
+    }
 }
