@@ -227,6 +227,7 @@ class ParkingBoyTest {
         ParkingLot parkingLotC = new ParkingLot(10);
         parkingLotList.add(parkingLotA);
         parkingLotList.add(parkingLotB);
+        parkingLotList.add(parkingLotC);
         SuperSmartParkingBoy parkingBoy = new SuperSmartParkingBoy(parkingLotList);
 
         //when
@@ -245,8 +246,8 @@ class ParkingBoyTest {
         Ticket ticket6 = parkingBoy.park(car6);
 
         //then
-        assertEquals(parkingLotA.getNumberOfCar(), 1);
-        assertEquals(parkingLotB.getNumberOfCar(), 2);
-        assertEquals(parkingLotC.getNumberOfCar(), 4);
+        assertEquals(1, parkingLotA.getNumberOfCar());
+        assertEquals(2, parkingLotB.getNumberOfCar());
+        assertEquals(4, parkingLotC.getNumberOfCar());
     }
 }
