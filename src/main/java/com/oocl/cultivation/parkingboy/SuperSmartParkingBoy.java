@@ -31,10 +31,8 @@ public class SuperSmartParkingBoy  {
     }
 
     public Car fetch(Ticket ticket) throws CarNotFoundException {
-        Car car;
-        //todo: add a funciton to get parkinglot name
-        for (ParkingLot parkingLot : parkingLotList) {
-            if (ticket.getParkingLot() != null && ticket.getParkingLot().equals(parkingLot.toString())) {
+        for (ParkingLot parkingLot : this.parkingLotList) {
+            if (ticket.getParkingLot() != null && ticket.getParkingLot().equals(parkingLot.getParkingLotName())) {
                 return parkingLot.fetch(ticket);
             }
         }

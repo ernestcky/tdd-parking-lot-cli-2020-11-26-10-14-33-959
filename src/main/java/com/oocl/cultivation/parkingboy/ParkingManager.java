@@ -49,10 +49,8 @@ public class ParkingManager {
     }
 
     public Car fetch(Ticket ticket) throws CarNotFoundException {
-        Car car;
-        //todo: add a funciton to get parkinglot name
         for (ParkingLot parkingLot : parkingLotList) {
-            if (ticket.getParkingLot() != null && ticket.getParkingLot().equals(parkingLot.toString())) {
+            if (ticket.getParkingLot() != null && ticket.getParkingLot().equals(parkingLot.getParkingLotName())) {
                 return parkingLot.fetch(ticket);
             }
         }

@@ -35,7 +35,6 @@ public class ParkingBoy {
         return this.parkingStrategy.park(car, this.parkingLotList);
     }
     public Car fetch(Ticket ticket) throws CarNotFoundException {
-        //todo: add a funciton to get parkinglot name
         for (ParkingLot parkingLot : this.parkingLotList) {
             if (ticket.getParkingLot() != null && ticket.getParkingLot().equals(parkingLot.getParkingLotName())) {
                 return parkingLot.fetch(ticket);
