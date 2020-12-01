@@ -52,6 +52,10 @@ public class ParkingLot {
         return ticket;
     }
 
+    public Double computeAvailableRate(Integer remainingPlace, Integer capacity) {
+        return new Double(this.getRemainingPlace()) /new Double(this.getCapacity());
+    }
+
     public Ticket park(Car car) throws NotEnoughSpaceException {
         if (!this.isHasAvailableSlot()) {
             throw new NotEnoughSpaceException("Not Enough Space");
