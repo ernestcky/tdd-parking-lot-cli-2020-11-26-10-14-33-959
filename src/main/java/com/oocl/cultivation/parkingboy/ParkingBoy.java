@@ -1,5 +1,7 @@
 package com.oocl.cultivation.parkingboy;
 
+import com.oocl.cultivation.strategy.ParkingStrategy;
+import com.oocl.cultivation.strategy.StandardParkingStrategy;
 import com.oocl.cultivation.utilities.Car;
 import com.oocl.cultivation.utilities.ParkingLot;
 import com.oocl.cultivation.utilities.Ticket;
@@ -11,6 +13,7 @@ import java.util.List;
 
 public class ParkingBoy {
     private List<ParkingLot> parkingLotList;
+    ParkingStrategy parkingStrategy = new StandardParkingStrategy();
 
     public ParkingBoy() {
         this.parkingLotList = new ArrayList<>();
@@ -29,19 +32,12 @@ public class ParkingBoy {
     }
 
     public Ticket park(Car car) throws NotEnoughSpaceException {
-        for (ParkingLot parkingLot : parkingLotList) {
-            if (parkingLot.isHasAvailableSlot()) {
-                return parkingLot.park(car);
-            }
-        }
-        throw new NotEnoughSpaceException("Not Enough Space");
+        return this.parkingStrategy.park(car, this.parkingLotList);
     }
-        // todo : remove car, and this.
     public Car fetch(Ticket ticket) throws CarNotFoundException {
-        Car car;
         //todo: add a funciton to get parkinglot name
-        for (ParkingLot parkingLot : parkingLotList) {
-            if (ticket.getParkingLot() != null && ticket.getParkingLot().equals(parkingLot.toString())) {
+        for (ParkingLot parkingLot : this.parkingLotList) {
+            if (ticket.getParkingLot() != null && ticket.getParkingLot().equals(parkingLot.getParkingLotName())) {
                 return parkingLot.fetch(ticket);
             }
         }

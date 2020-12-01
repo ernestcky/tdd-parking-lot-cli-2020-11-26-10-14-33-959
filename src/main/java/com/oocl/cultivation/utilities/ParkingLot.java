@@ -25,6 +25,10 @@ public class ParkingLot {
         this.ticketMap = new HashMap<>();
     }
 
+    public String getParkingLotName() {
+        return this.toString();
+    }
+
     public Integer getCapacity() {
         return capacity;
     }
