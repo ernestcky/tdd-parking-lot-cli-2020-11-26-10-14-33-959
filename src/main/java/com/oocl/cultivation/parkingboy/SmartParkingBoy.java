@@ -1,5 +1,7 @@
 package com.oocl.cultivation.parkingboy;
 
+import com.oocl.cultivation.strategy.ParkingStrategy;
+import com.oocl.cultivation.strategy.SmartParkingStrategy;
 import com.oocl.cultivation.utilities.Car;
 import com.oocl.cultivation.utilities.ParkingLot;
 import com.oocl.cultivation.utilities.Ticket;
@@ -12,18 +14,14 @@ import java.util.List;
 
 public class SmartParkingBoy {
     private List<ParkingLot> parkingLotList;
+    private ParkingStrategy parkingStrategy = new SmartParkingStrategy();
+
     public SmartParkingBoy(List<ParkingLot> parkingLotList) {
         this.parkingLotList = parkingLotList;
     }
 
     public Ticket park(Car car) throws NotEnoughSpaceException {
-        ParkingLot parkingLotToBeUsed = Collections.max(this.parkingLotList, Comparator.comparing(c -> c.getRemainingPlace()));
-
-        if (parkingLotToBeUsed.isHasAvailableSlot()) {
-            return parkingLotToBeUsed.park(car);
-        }
-
-        throw new NotEnoughSpaceException("Not Enough Space");
+        return this.parkingStrategy.park(car, this.parkingLotList);
     }
 
     public Car fetch(Ticket ticket) throws CarNotFoundException {

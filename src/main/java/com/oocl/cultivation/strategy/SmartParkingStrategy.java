@@ -5,16 +5,19 @@ import com.oocl.cultivation.utilities.Car;
 import com.oocl.cultivation.utilities.ParkingLot;
 import com.oocl.cultivation.utilities.Ticket;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
-public class StandardParkingStrategy implements ParkingStrategy {
+public class SmartParkingStrategy implements ParkingStrategy {
     @Override
     public Ticket park(Car car, List<ParkingLot> parkingLotList) throws NotEnoughSpaceException {
-        for (ParkingLot parkingLot : parkingLotList) {
-            if (parkingLot.isHasAvailableSlot()) {
-                return parkingLot.park(car);
-            }
+        ParkingLot parkingLotToBeUsed = Collections.max(parkingLotList, Comparator.comparing(c -> c.getRemainingPlace()));
+
+        if (parkingLotToBeUsed.isHasAvailableSlot()) {
+            return parkingLotToBeUsed.park(car);
         }
+
         throw new NotEnoughSpaceException("Not Enough Space");
     }
 }
