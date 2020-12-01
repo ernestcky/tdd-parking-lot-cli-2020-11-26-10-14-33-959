@@ -1,4 +1,8 @@
-package com.oocl.cultivation;
+package com.oocl.cultivation.utilities;
+
+import com.oocl.cultivation.exception.NotEnoughSpaceException;
+import com.oocl.cultivation.utilities.Car;
+import com.oocl.cultivation.utilities.Ticket;
 
 import java.util.HashMap;
 import java.util.Map;

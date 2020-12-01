@@ -1,4 +1,4 @@
-package com.oocl.cultivation;
+package com.oocl.cultivation.utilities;
 
 public class Ticket {
     // todo: parkingLotname
