@@ -6,6 +6,7 @@ import java.util.Map;
 public class ParkingLot {
     private final Integer capacity;
     private Map<Ticket, Car> ticketCarMap;
+    // todo: duplicated
     private Map<Ticket, Boolean> ticketMap;
 
     public ParkingLot() {

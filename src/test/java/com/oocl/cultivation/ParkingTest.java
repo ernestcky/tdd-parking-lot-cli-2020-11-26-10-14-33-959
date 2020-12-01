@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ParkingBoyTest {
+class ParkingTest {
     @Test
     public void should_return_ticket_when_park_given_car_and_parking_boy_and_parking_lot() throws NotEnoughSpaceException {
         //given

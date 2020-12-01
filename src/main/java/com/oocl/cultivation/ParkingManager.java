@@ -3,8 +3,9 @@ package com.oocl.cultivation;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParkingManager extends ParkingBoy {
+public class ParkingManager {
     private List<ParkingBoy> parkingBoyList;
+    private List<ParkingLot> parkingLotList;
 
     public ParkingManager() {
         super();
@@ -12,7 +13,7 @@ public class ParkingManager extends ParkingBoy {
     }
 
     public ParkingManager(List<ParkingLot> parkingLotList, List<ParkingBoy> parkingBoyList) {
-        super(parkingLotList);
+        this.parkingLotList = parkingLotList;
         if (parkingBoyList == null) {
             this.parkingBoyList = new ArrayList<>();
         } else {
@@ -21,7 +22,7 @@ public class ParkingManager extends ParkingBoy {
     }
 
     public List<ParkingBoy> getParkingBoyList() {
-        return parkingBoyList;
+        return this.parkingBoyList;
     }
 
     public void addParkingBoy(ParkingBoy parkingBoy) {
@@ -32,4 +33,23 @@ public class ParkingManager extends ParkingBoy {
         return this.parkingBoyList.get(index);
     }
 
+    public Ticket park(Car car) throws NotEnoughSpaceException {
+        for (ParkingLot parkingLot : parkingLotList) {
+            if (parkingLot.isHasAvailableSlot()) {
+                return parkingLot.park(car);
+            }
+        }
+        throw new NotEnoughSpaceException("Not Enough Space");
+    }
+
+    public Car fetch(Ticket ticket) throws CarNotFoundException {
+        Car car;
+        //todo: add a funciton to get parkinglot name
+        for (ParkingLot parkingLot : parkingLotList) {
+            if (ticket.getParkingLot() != null && ticket.getParkingLot().equals(parkingLot.toString())) {
+                return parkingLot.fetch(ticket);
+            }
+        }
+        throw new CarNotFoundException("Car Not Found");
+    }
 }

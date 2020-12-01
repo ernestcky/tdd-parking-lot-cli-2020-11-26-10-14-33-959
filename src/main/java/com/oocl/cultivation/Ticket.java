@@ -1,6 +1,7 @@
 package com.oocl.cultivation;
 
 public class Ticket {
+    // todo: parkingLotname
     private String parkingLot;
 
     public Ticket() {
